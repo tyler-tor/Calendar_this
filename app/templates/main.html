@@ -1,9 +1,58 @@
 <html>
-    <head>
-        <title></title>
-    </head>
-    <body>
-        <h1>Calender working</h1>
-        <h2>here</h2>
-    </body>
+  <head>
+    <title></title>
+  </head>
+  <body>
+    <form method="post" action="/" class="appoint-form">
+      <!-- use your form variable here -->
+      <!-- to make your form           -->
+      <p>{{form.csrf_token}}</p>
+      <p>{{form.name.label}}{{form.name}}</p>
+      <p>
+        {{form.start_date.label}}{{form.start_date}}
+        {{form.start_time.label}}{{form.start_time}}
+      </p>
+      <p>
+        {{form.end_date.label}}{{form.end_date}}
+        {{form.end_date.label}}{{form.end_time}}
+
+        {% if form.end_date.errors %}
+          <div class="errors">
+            {% for error in form.end_date.errors %}
+            <div>{{ error }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </p>
+      <p>
+        {{form.description.label}}{{form.description}}
+      </p>
+      <p>
+        {{form.private.label}}{{form.private}}
+      </p>
+      {{form.submit()}}
+    </form>
+    <table>
+      <thead>
+        <tr>
+          <th scope="row">Name</th>
+          <th scope="row">Start</th>
+          <th scope="row">End</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in rows %}
+            <td>
+                {{row[1]}}
+            </td>
+            <td>
+                {{datetime.strptime(row[2] , '%H:%M:%S').strftime("%H:%M")}}
+            </td>
+            <td>
+                {{datetime.strptime(row[3] , '%H:%M:%S').strftime("%H:%M")}}
+            </td>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
 </html>

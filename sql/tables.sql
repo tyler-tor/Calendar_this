@@ -9,5 +9,5 @@ CREATE TABLE appointments (
 
 INSERT INTO appointments (name, start_datetime, end_datetime, description, private)
 VALUES
-('My appointment', '«DATE» 14:00:00', '«DATE» 15:00:00',
+('My appointment', '14:00:00', '15:00:00',
  'An appointment for me', false);
